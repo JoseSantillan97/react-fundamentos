@@ -1,4 +1,5 @@
 import React from 'react'
+import './TarjetaFruta.css'
 
 // const ComponenteFuncional = (props) => (
 //   <div>
@@ -24,16 +25,19 @@ class TarjetaFruta extends React.Component {
   limpiar = () => {
     this.setState({ cantidad: 0 })
   }
-
+  
   render(){
+    const hasItems = this.state.cantidad > 0;
+    const classes = `TarjetaFruta ${hasItems ? 'TarjetaFruta-activa' : ''}`
+
     return(
-      <div>
+      <div className={classes}>
         <h2>{ this.props.fruit }</h2>
         <h2>Cantidad: { this.state.cantidad }</h2>
         <button onClick={ this.agregar }> + </button>
         <button onClick={ this.quitar }> - </button>
         <button onClick={ this.limpiar }> Limpiar </button>
-        <h2>{ this.props.precio }</h2>
+        <h2>Total ${ this.props.precio * this.state.cantidad }</h2>
       </div>
     )
   }
